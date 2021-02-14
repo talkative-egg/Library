@@ -1,11 +1,35 @@
 .book{
+    width: 150px;
+    height: 200px;
     background-color: red;
     color: white;
 }
 
+.title{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.author{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.pages{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.isRead{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
 #book-container{
-    display: grid;
-    grid-template-columns: repeat(3, 30%);
-    grid-gap: 10px;
-    justify-self: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 20px;
 }

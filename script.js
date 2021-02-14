@@ -6,16 +6,16 @@ addButton.addEventListener("click", addBookToLibrary);
 
 function Book(title, author, pages, isRead){
     this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
+    this.author = "author: " + author;
+    this.pages = pages + " pages";
+    this.isRead = "read: " + ((isRead === "yes")? "yes" : "no");
 }
 
 function addBookToLibrary(){
     let title = prompt("Title?");
     let author = prompt("Author?");
     let pages = prompt("How many pages?");
-    let isRead = prompt("Have you read it? true/false");
+    let isRead = prompt("Have you read it? yes/no");
     const newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
     displayBooks();
@@ -27,9 +27,11 @@ function addBookDiv(book){
     const title = addBookChild(book, "title");
     const author = addBookChild(book, "author");
     const pages = addBookChild(book, "pages");
+    const isRead = addBookChild(book, "isRead");
     bookContainer.appendChild(title);
     bookContainer.appendChild(author);
     bookContainer.appendChild(pages);
+    bookContainer.appendChild(isRead);
     container.appendChild(bookContainer);
 }
 
