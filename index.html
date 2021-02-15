@@ -4,7 +4,32 @@
         <link href="styles.css" rel="stylesheet">
     </head>
     <body>
+        <h1>My Library</h1>
         <button id="add">Add Book</button>
+        <div class="form-popup" id="myform">
+
+            <button type="button" class="btn cancel"><img src="cancel-button.png" alt="cancel"></button>
+
+            <form class="form-container">
+                
+
+                <h1>New Book</h1>
+                 
+                <label for="title"><strong>Title:</strong></label>
+                <input type="text" placeholder="Enter title" name="title" id="title" required>
+
+                <label for="author"><strong>Author:</strong></label>
+                <input type="text" placeholder="Enter author" name="author" id="author" required>
+
+                <label for="pages"><strong>Amount of pages:</strong></label>
+                <input type="number" placeholder="Amount of pages" name="pages" id="pages" required>
+
+                <label for="isRead"><strong>Read?</strong><input type="checkbox" name="isRead" id="isRead"></input></label>
+
+                <button type="submit" class="btn">Enter</button>
+                
+            </form>
+        </div>
         <div id="book-container">
 
         </div>

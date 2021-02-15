@@ -1,17 +1,44 @@
 let myLibrary = [];
 const addButton = document.querySelector("#add");
+const closeButton = document.querySelector(".cancel");
 const container = document.querySelector("#book-container");
+const myForm = document.querySelector(".form-container");
 
-addButton.addEventListener("click", addBookToLibrary);
+addButton.addEventListener("click", openForm);
+closeButton.addEventListener("click", closeForm);
+myForm.addEventListener("submit", results);
+
+
+function results(e){
+    let title = document.querySelector("#title").value;
+    let author = document.querySelector("#author").value;
+    let pages = document.querySelector("#pages").value;
+    let isRead = (document.querySelector("#isRead").checked)? "yes":"no";
+    myLibrary.push(new Book(title, author, pages, isRead));
+    displayBooks();
+    e.preventDefault();
+    closeForm();
+    myForm.reset();
+}
+
+function openForm(){
+    document.querySelector(".form-popup").style.display = "block";
+}
+
+function closeForm(){
+    document.querySelector(".form-popup").style.display = "none";
+}
+
+//addButton.addEventListener("click", addBookToLibrary);
 
 function Book(title, author, pages, isRead){
     this.title = title;
     this.author = "author: " + author;
     this.pages = pages + " pages";
-    this.isRead = "read: " + ((isRead === "yes")? "yes" : "no");
+    this.isRead = "read: " + isRead;
 }
 
-function addBookToLibrary(){
+/*function addBookToLibrary(){
     let title = prompt("Title?");
     let author = prompt("Author?");
     let pages = prompt("How many pages?");
@@ -19,7 +46,7 @@ function addBookToLibrary(){
     const newBook = new Book(title, author, pages, isRead);
     myLibrary.push(newBook);
     displayBooks();
-}
+}*/
 
 function addBookDiv(book){
     const bookContainer = document.createElement("div");
