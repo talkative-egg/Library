@@ -8,10 +8,10 @@ body h1{
     height: 200px;
     background-color: red;
     color: white;
+    text-align: center;
 }
 
 .title{
-    text-align: center;
     font-size: 25px;
     margin-top: 10px;
 }
@@ -27,8 +27,31 @@ body h1{
 }
 
 .isRead{
+    float: left;
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 20px;
+    width: 50px;
+    height: 40px;
+    background-color: yellow;
+    border: 1px solid #f1f1f1;
+}
+
+.isRead:hover{
+    cursor: pointer;
+}
+
+.delete{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 50px;
+    height: 40px;
+    background-color: yellow;
+    border: 1px solid #f1f1f1;
+}
+
+.delete:hover{
+    cursor: pointer;
 }
 
 #book-container{
@@ -37,9 +60,9 @@ body h1{
     flex-wrap: wrap;
     row-gap: 10px;
     column-gap: 20px;
-}
+  }
 
-#add {
+  #add {
     background-color: #555;
     color: white;
     padding: 16px 20px;
@@ -50,6 +73,10 @@ body h1{
     bottom: 23px;
     right: 28px;
     width: 280px;
+  }
+
+  #add:hover{
+      opacity: 1.0;
   }
 
   .form-popup h1{

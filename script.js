@@ -3,11 +3,11 @@ const addButton = document.querySelector("#add");
 const closeButton = document.querySelector(".cancel");
 const container = document.querySelector("#book-container");
 const myForm = document.querySelector(".form-container");
+let bookIndex = 0;
 
 addButton.addEventListener("click", openForm);
 closeButton.addEventListener("click", closeForm);
 myForm.addEventListener("submit", results);
-
 
 function results(e){
     let title = document.querySelector("#title").value;
@@ -33,9 +33,14 @@ function closeForm(){
 
 function Book(title, author, pages, isRead){
     this.title = title;
-    this.author = "author: " + author;
+    this.author = author;
     this.pages = pages + " pages";
-    this.isRead = "read: " + isRead;
+    this.isRead = isRead;
+}
+
+Book.prototype.delete = function(){
+    delete this;
+    displayBooks();
 }
 
 /*function addBookToLibrary(){
@@ -49,16 +54,30 @@ function Book(title, author, pages, isRead){
 }*/
 
 function addBookDiv(book){
+    bookIndex++;
     const bookContainer = document.createElement("div");
     bookContainer.classList.add("book");
+    bookContainer.setAttribute("data-index", `index${bookIndex}`);
     const title = addBookChild(book, "title");
     const author = addBookChild(book, "author");
     const pages = addBookChild(book, "pages");
-    const isRead = addBookChild(book, "isRead");
+    const isRead = addReadButton(book);
+    const deleteButton = addDeleteButton(book);
+    isRead.addEventListener("click", function(){
+        isRead.textContent = (isRead.textContent === "Read")? "Not read":"Read";
+    });
+    deleteButton.addEventListener("click", function(){
+        const dataIndex = deleteButton.getAttribute("data-index");
+        const index = dataIndex[dataIndex.length - 1] - 1;
+        const book = document.querySelector(`[data-index="${dataIndex}"]`)
+        book.remove();
+        myLibrary.splice(index, 1);
+    });
     bookContainer.appendChild(title);
     bookContainer.appendChild(author);
     bookContainer.appendChild(pages);
     bookContainer.appendChild(isRead);
+    bookContainer.appendChild(deleteButton);
     container.appendChild(bookContainer);
 }
 
@@ -69,8 +88,24 @@ function addBookChild(book, property){
     return div;
 }
 
+function addReadButton(book){
+    const button = document.createElement("button");
+    button.textContent = (book.isRead === "yes")? "Read":"Not read";
+    button.className = "isRead";
+    return button;
+}
+
+function addDeleteButton(book){
+    const button = document.createElement("button");
+    button.textContent = "delete";
+    button.className = "delete";
+    button.setAttribute("data-index", `index${bookIndex}`);
+    return button;
+}
+
 function displayBooks(){
     removeAllChild(container);
+    bookIndex = 0;
     myLibrary.forEach(e => addBookDiv(e));
 }
 
